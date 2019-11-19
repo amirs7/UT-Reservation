@@ -1,0 +1,8 @@
+version: '3.1'
+
+services:
+
+ reserve:
+    image: reserve
+    ports:
+      - "2000:2000"
