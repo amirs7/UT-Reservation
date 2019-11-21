@@ -49,7 +49,7 @@ app.get('/available_rooms', extractDateFromRequest, async (req, res, next) => {
     try {
         let { startDate, endDate } = req;
         let availableRooms = await rooms.listAvailableRooms(startDate, endDate);
-        return res.json(availableRooms);
+        return res.json({ availableRooms });
     } catch (error) {
         return next(error);
     }
@@ -75,9 +75,9 @@ app.post('/rooms/:room_id/reserve', async (req, res, next) => {
         let availableRooms = await rooms.listAvailableRooms(startDate, endDate);
         if (availableRooms.indexOf(roomId) !== -1) {
             await rooms.reserve(roomId, startDate, endDate, username);
-            return res.status(200).send({ message: `Room${roomId}: successfully reserved for:${username}` });
+            return res.status(200).send({ message: `Room ${roomId} successfully reserved for:${username}` });
         } else {
-            return res.status(400).send({ message: `Room:${roomId} is already reserved` });
+            return res.status(400).send({ message: `Room ${roomId} is already reserved` });
         }
     } catch (error) {
         console.log(error);
