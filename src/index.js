@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const moment = require('moment');
+const helmet = require('helmet')
 const { simulateDelay, parseDate, simulateFailure } = require('./utils');
 const Rooms = require('./rooms');
 let rooms = new Rooms();
 const app = express();
-
+app.use(helmet());
 app.use(express.static('public'));
 
 app.use(bodyParser.json());
