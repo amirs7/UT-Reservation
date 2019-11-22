@@ -9,7 +9,10 @@ WORKDIR /home
 RUN npm install --loglevel verbose
 
 ENV SERVER_PORT 2000
+RUN mkdir db
 COPY ./src /home/src
+COPY ./scripts /home/scripts
+RUN sqlite3 ./db/rooms.db < scripts/init.sql
 EXPOSE 2000/tcp
 WORKDIR /home/src
 ENTRYPOINT ["node", "index.js"]
