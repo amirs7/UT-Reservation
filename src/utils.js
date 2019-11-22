@@ -21,6 +21,8 @@ function delay(amount) {
 }
 
 async function simulateDelay(req, res, next) {
+    if(!faultEnabled)
+        return next();
     let prob = getRandomInt(100);
     let delayAmount = getRandomInt(10) * 100;
     if (prob < 40)
