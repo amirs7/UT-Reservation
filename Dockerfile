@@ -15,4 +15,4 @@ RUN sqlite3 ./db/rooms.db < scripts/init.sql
 WORKDIR /home/src
 ENV SERVER_PORT 8000
 EXPOSE 8000/tcp
-ENTRYPOINT ["node", 'index.js']
+CMD node index.js 
