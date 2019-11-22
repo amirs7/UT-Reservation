@@ -14,5 +14,6 @@ COPY ./scripts /home/scripts
 RUN sqlite3 ./db/rooms.db < scripts/init.sql
 WORKDIR /home/src
 ENV SERVER_PORT 8000
+ENV RES_FAULT_ENABLED true
 EXPOSE 8000/tcp
 CMD node index.js 

@@ -89,6 +89,10 @@ app.post('/rooms/:room_id/reserve', async (req, res, next) => {
     }
 });
 
+app.use((req,res, next)=>{
+    return res.sendStatus(404);
+})
+
 app.use((error, req, res, next) => {
     console.log('INTERNAL ERROR:', error);
     return res.sendStatus(500);
