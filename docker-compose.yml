@@ -4,8 +4,8 @@ services:
 
   reserve:
     image: reserve
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
   nginx:
     image: nginx
     ports:
