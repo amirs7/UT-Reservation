@@ -4,7 +4,7 @@ const faultEnabled = process.env['RES_FAULT_ENABLED'];
 console.log(`Fault enabled: ${faultEnabled}`);
 
 function parseDate(d) {
-    if (moment(d, DATE_FORMAT).isValid())
+    if (moment(d, 'YYYY-MM-DDTHH:mm:ss', true).isValid())
         return moment(d).format(DATE_FORMAT);
     else
         return null;
