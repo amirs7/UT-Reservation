@@ -262,11 +262,11 @@
 <p><strong>University of Tehran, Software Engineering, Fall 98</strong><br>
 <strong>Reservation System API Specification</strong></p>
 <h1 id='get-list-of-avaialable-rooms'>Get List of Avaialable Rooms</h1><pre class="highlight shell tab-shell"><code> curl <span class="s2">"http://213.233.176.40/available_rooms</span><span class="se">\</span><span class="s2">
-?start=2019-09-13T19:20:00&amp;end=2019-09-13T19:40:00"</span>
+?start=2019-09-13T19:00:00&amp;end=2019-09-13T20:00:00"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'axios'</span><span class="p">);</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'http://213.233.176.40/available_rooms'</span> <span class="o">+</span>
-    <span class="s1">'?start=2019-09-13T19:20:00&amp;end=2019-09-13T19:40:00'</span><span class="p">)</span>
+    <span class="s1">'?start=2019-09-13T19:00:00&amp;end=2019-09-13T20:00:00'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">});</span>
