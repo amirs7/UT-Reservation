@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
 
- reserve:
+  reserve:
     image: reserve
     ports:
       - "8000:8000"
