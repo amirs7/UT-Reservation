@@ -10,7 +10,6 @@ class Rooms {
                 'SELECT id from Room WHERE id NOT IN '
                 +'(SELECT roomId FROM Reserve WHERE'
                 + '(((start >= ?) AND (start < ?)) OR ((? >= start) AND (? < end))))', [start, end, start, start], (err, rows) => {
-                    console.log(rows);
                     if (err)
                         reject(err)
                     else

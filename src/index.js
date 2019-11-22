@@ -15,9 +15,12 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(simulateDelay);
+
+app.use(simulateFailure);
+
 function extractDateFromRequest(req, res, next) {
     let { start, end } = req.body.start ? req.body : req.query;
-    console.log(start, end);
 
     if (!start)
         return res.status(400).send({ message: 'Start date is  required!' });
@@ -71,7 +74,8 @@ app.param('room_id', extractDateFromRequest, async (req, res, next, roomId) => {
 app.post('/rooms/:room_id/reserve', async (req, res, next) => {
     try {
         let roomId = Number(req.params['room_id']);
-        let { startDate, endDate, username } = req;
+        let { startDate, endDate } = req;
+        let { username } = req.body;
         let availableRooms = await rooms.listAvailableRooms(startDate, endDate);
         if (availableRooms.indexOf(roomId) !== -1) {
             await rooms.reserve(roomId, startDate, endDate, username);
