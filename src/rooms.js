@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3');
 
 class Rooms {
     connect() {
-        this.db = new sqlite3.Database('./db/rooms.db');
+        this.db = new sqlite3.Database('../db/rooms.db');
     }
     listAvailableRooms(start, end) {
         return new Promise((resolve, reject) => {

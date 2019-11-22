@@ -9,6 +9,7 @@ WORKDIR /home
 RUN npm install --loglevel verbose
 
 ENV SERVER_PORT 2000
-COPY ./index.js /home
+COPY ./src /home/src
 EXPOSE 2000/tcp
+WORKDIR /home/src
 ENTRYPOINT ["node", "index.js"]
