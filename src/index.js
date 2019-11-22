@@ -77,6 +77,8 @@ app.post('/rooms/:room_id/reserve', async (req, res, next) => {
         let roomId = Number(req.params['room_id']);
         let { startDate, endDate } = req;
         let { username } = req.body;
+        if (!username)
+            return res.status(400).send({ message: 'Username is required' });
         let availableRooms = await rooms.listAvailableRooms(startDate, endDate);
         if (availableRooms.indexOf(roomId) !== -1) {
             await rooms.reserve(roomId, startDate, endDate, username);
@@ -90,11 +92,13 @@ app.post('/rooms/:room_id/reserve', async (req, res, next) => {
     }
 });
 
-app.use((req,res, next)=>{
+app.use((req, res, next) => {
     return res.sendStatus(404);
 })
 
 app.use((error, req, res, next) => {
+    if (error.type === 'entity.parse.failed')
+        return res.status(400).send({message: 'Request body is malformed!'})
     console.log('INTERNAL ERROR:', error);
     return res.sendStatus(500);
 });
