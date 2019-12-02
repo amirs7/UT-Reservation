@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet')
 const { simulateDelay, parseDate, simulateFailure } = require('./utils');
 const Rooms = require('./rooms');
+const blacklist = require('./blacklist');
 let rooms = new Rooms();
 const app = express();
 
@@ -12,9 +13,12 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-    console.log(req.method, req.path, req.query, req.body);
+    let ip = req.header['X-Real-IP'];
+    console.log(ip, req.method, req.path, req.query, req.body);
     next();
 });
+
+app.use(blacklist);
 
 app.use(simulateDelay);
 
@@ -94,11 +98,11 @@ app.post('/rooms/:room_id/reserve', async (req, res, next) => {
 
 app.use((req, res, next) => {
     return res.sendStatus(404);
-})
+});
 
 app.use((error, req, res, next) => {
     if (error.type === 'entity.parse.failed')
-        return res.status(400).send({message: 'Request body is malformed!'})
+        return res.status(400).send({ message: 'Request body is malformed!' })
     console.log('INTERNAL ERROR:', error);
     return res.sendStatus(500);
 });

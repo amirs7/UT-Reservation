@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Reservation Blacklist</title>
+</head>
+
+<body>
+    <h1>
+        Blacklisted IPs:
+    </h1>
+    <ul>
+        <%for(idx in ips){%>
+        <li>
+            <form action="blacklist/<%=ips[idx]%>?_method=DELETE" method="POST">
+                <%=ips[idx]%>
+                <input type="submit" value="Remove">
+            </form>
+        </li>
+        <%}%>
+    </ul>
+    <form action="blacklist" method="POST">
+        <input name="ip" placeholder="IP address"/>
+        <input type="submit" value="Add"/>
+    </form>
+</body>
+
+</html>
