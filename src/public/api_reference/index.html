@@ -261,11 +261,11 @@
         <h1 id='introduction'>Introduction</h1>
 <p><strong>University of Tehran, Software Engineering, Fall 98</strong><br>
 <strong>Reservation System API Specification</strong></p>
-<h1 id='get-list-of-avaialable-rooms'>Get List of Avaialable Rooms</h1><pre class="highlight shell tab-shell"><code> curl <span class="s2">"http://213.233.176.40/available_rooms</span><span class="se">\</span><span class="s2">
+<h1 id='get-list-of-avaialable-rooms'>Get List of Avaialable Rooms</h1><pre class="highlight shell tab-shell"><code> curl <span class="s2">"http://reserve.utse.ir/available_rooms</span><span class="se">\</span><span class="s2">
 ?start=2019-09-13T19:00:00&amp;end=2019-09-13T20:00:00"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'axios'</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'http://213.233.176.40/available_rooms'</span> <span class="o">+</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'http://reserve.utse.ir/available_rooms'</span> <span class="o">+</span>
     <span class="s1">'?start=2019-09-13T19:00:00&amp;end=2019-09-13T20:00:00'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
@@ -286,7 +286,7 @@
 </span></code></pre>
 <p>This endpoint can be used to retrieve the list of available rooms regarding the specified start and end date of the desired meeting.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://213.233.176.40/available_rooms</code></p>
+<p><code>GET http://reserve.utse.ir/available_rooms</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -329,10 +329,10 @@
 <h1 id='reserve-a-room'>Reserve a room</h1><pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   --request POST <span class="se">\</span>
   --data <span class="s1">'{"username":"rkhosravi","start": "2019-09-13T19:00:00","end": "2019-09-13T20:00:00"}'</span> <span class="se">\</span>
-  <span class="s2">"http://213.233.176.40/rooms/801/reserve"</span>
+  <span class="s2">"http://reserve.utse.ir/rooms/801/reserve"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'axios'</span><span class="p">);</span>
 
-<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'http://213.233.176.40/rooms/801/reserve'</span><span class="p">,</span>
+<span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'http://reserve.utse.ir/rooms/801/reserve'</span><span class="p">,</span>
     <span class="p">{</span>
         <span class="s2">"username"</span><span class="p">:</span> <span class="s2">"rkhosravi"</span><span class="p">,</span>
         <span class="s2">"start"</span><span class="p">:</span> <span class="s2">"2019-09-13T19:00:00"</span><span class="p">,</span>
@@ -352,7 +352,7 @@
 </span></code></pre>
 <p>This endpoint can be used to reserve a specific room.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST http://213.233.176.40/rooms/&lt;room_id&gt;/reserve</code></p>
+<p><code>POST http://reserve.utse.ir/rooms/&lt;room_id&gt;/reserve</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
